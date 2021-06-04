@@ -1,0 +1,432 @@
+body {
+  background-color: black;
+}
+
+img,
+svg {
+  image-rendering: pixelated;
+}
+
+option {
+  background-color: rgba(13, 13, 13, 1);
+}
+/* .bg-trans {
+  background-color: rgba(13, 13, 13, 1);
+} */
+.video-react-approved {
+  z-index: 0;
+}
+
+.video-react-notapproved {
+  z-index: -1;
+}
+
+.white {
+  color: white;
+}
+
+.text-right {
+  text-align: end;
+}
+
+.price-tag {
+  font-weight: bold;
+}
+
+.description {
+  line-height: 48px;
+}
+
+.category-title {
+  color: rgba(126, 126, 126, 1);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 48px;
+}
+
+.popuppayment {
+  background-color: white;
+  width: 42rem;
+  color: rgba(70, 159, 116, 1);
+  font-size: 1.4rem;
+  border-radius: 5px;
+  border: none;
+}
+
+#transaction-price {
+  font-weight: bold;
+}
+
+.popupbuy {
+  background-color: white;
+  color: rgba(70, 159, 116, 1);
+  font-size: 1.4rem;
+  border-radius: 5px;
+  border: none;
+  height: 8rem;
+}
+
+.popupbuy-margin {
+  margin-top: 1.2rem !important;
+}
+
+.modal-dialog-popup {
+  max-width: 47rem !important;
+}
+
+.grey {
+  color: rgba(97, 97, 97, 1);
+  font-size: 0.6rem;
+  margin-left: 0.3rem;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.history-transaction {
+  background: rgba(205, 46, 113, 0.44);
+}
+
+.history-transaction-body {
+  padding: 0.7rem 0.7rem;
+  font-size: 0.6rem;
+}
+
+#transaction-title {
+  color: white;
+  font-size: 1rem;
+}
+
+.navbar-container {
+  max-width: 79rem;
+}
+
+.navbar-img {
+  max-width: 60px;
+}
+
+.navbar-img-container {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border: 2px solid rgba(205, 46, 113, 1);
+  border-radius: 50% !important;
+}
+
+.navbar-item:hover {
+  color: black;
+}
+
+.dropdown-item-container-user {
+  border-radius: 10px;
+  background-color: rgba(13, 13, 13, 1) !important;
+  width: 245.74px;
+}
+
+.dropdown-item-container-admin {
+  border-radius: 10px;
+  background-color: rgba(13, 13, 13, 1) !important;
+  width: 222.33px;
+}
+
+.dropdown-item-container {
+  border-radius: 10px;
+  background-color: rgba(13, 13, 13, 1) !important;
+}
+
+.dropdown-menu {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  background-color: transparent;
+  width: max-content;
+  min-width: 0rem;
+  border: none;
+}
+
+.dropdown-item {
+  font-size: 1.5rem;
+  color: white;
+}
+
+#basic-nav-dropdown {
+  background-color: black;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: transparent;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+  opacity: unset;
+}
+
+.triangle {
+  border-bottom: solid 40px rgba(13, 13, 13, 1) !important;
+  border-left: solid 25px transparent;
+  border-right: solid 25px transparent;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: relative;
+  top: 10px;
+  right: 10px;
+}
+
+.triangle-small {
+  border-bottom: solid 23px rgba(13, 13, 13, 1) !important;
+  border-left: solid 12px transparent;
+  border-right: solid 12px transparent;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: relative;
+  top: 10px;
+  right: 10px;
+}
+
+.triangle-container {
+  background-color: transparent;
+}
+
+.dropdown-toggle::after {
+  content: unset;
+}
+
+.profile-image {
+  display: block;
+  width: 180px !important;
+  height: 100%;
+}
+
+.profile-image-container {
+  height: 221.79px;
+  width: 204px;
+}
+
+.profile-container {
+  max-width: 67rem;
+  margin-top: 3rem;
+}
+
+#myprofile-title,
+#history-transaction-title {
+  color: white;
+  font-weight: 600;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-container {
+  margin-right: 23px;
+  text-align: center;
+}
+
+.status-pending {
+  background: rgba(255, 217, 0, 0.1);
+  color: rgba(247, 148, 30, 1);
+}
+
+.status-finished {
+  background: rgba(0, 255, 117, 0.1);
+  color: rgba(0, 255, 71, 1);
+}
+
+.status-cancel {
+  background: rgba(255, 117, 0, 0.1);
+  color: rgba(255, 71, 0, 1);
+}
+
+.textimage {
+  font-weight: lighter;
+  font-size: 100%;
+  line-height: 179%;
+  color: #ffffff;
+}
+
+.textimagecontainer {
+  width: 60%;
+}
+
+.filmtitle {
+  color: white !important;
+  height: 2.5rem;
+  overflow: hidden;
+}
+
+.filmcard {
+  max-width: 2.5rem;
+}
+
+.card-film-container {
+  width: 10.85rem;
+  height: 15rem;
+  background-color: black;
+}
+.card-film-image {
+  cursor: pointer;
+  max-height: 100%;
+}
+
+.card-img-overlay {
+  padding-top: 0px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.buttonModalTransfer {
+  background-color: transparent;
+}
+
+.modal-dialog {
+  max-width: 26rem;
+}
+
+.modal-lg {
+  max-width: 47rem !important;
+}
+
+.modal-titles {
+  font-weight: 700 !important;
+  font-size: 2.18rem;
+  margin-bottom: 1.7rem !important;
+}
+
+.modal-body {
+  background-color: rgba(13, 13, 13, 1);
+  border-radius: 0.7rem;
+  padding: 2rem;
+}
+
+.modal-content {
+  background-color: transparent;
+  height: 100% !important;
+  border: none;
+}
+
+.formmodal {
+  background-color: rgba(210, 210, 210, 0.25) !important;
+}
+
+.form-control-default {
+  color: white;
+  padding: 0.75rem 0.75rem;
+}
+
+.form-control-text {
+  color: white;
+  padding: 0.75rem 0.75rem;
+  height: 250px;
+}
+
+.form-control-placeholder {
+  color: #6c757d;
+  padding: 0.75rem 0.75rem;
+}
+
+.form-control:focus {
+  color: white;
+  padding: 0.75rem 0.75rem;
+}
+
+.pinktext {
+  color: rgba(205, 46, 113, 1);
+}
+
+.margin-nav {
+  margin-top: 2.5rem !important;
+}
+
+.body-nav {
+  min-height: 72px;
+}
+
+.btn {
+  color: #e8e8e8 !important;
+  box-shadow: none !important;
+  border: none !important;
+  background-color: rgba(205, 46, 113, 1);
+  border-radius: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 900;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  color: #fff;
+  background-color: rgba(205, 46, 113, 1);
+  border-color: #0a58ca;
+  box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 50%);
+}
+
+.btn-login {
+  background: transparent !important;
+  padding: 0rem 0rem;
+  margin-right: 2.5rem;
+}
+
+.btn-modal {
+  font-size: 1.1rem;
+  padding: 0.7rem 2.6rem;
+}
+
+.btn-addfilm {
+  font-size: 1.1rem;
+  padding: 0.5rem 2.6rem;
+}
+
+.btn-regis {
+  padding: 0.64rem 1.5rem;
+}
+
+.sr-only {
+  display: none;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-color: #bbb;
+  border-style: solid;
+  border-top-style: none;
+  border-right-style: none;
+  border-bottom-style: solid;
+  border-left-style: none;
+  border-width: 0;
+}
+
+td,
+th {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.finished {
+  color: rgba(10, 207, 131, 1);
+}
+
+.cancel {
+  color: rgba(255, 7, 66, 1);
+}
+
+.pending {
+  color: rgba(247, 148, 30, 1);
+}
+
+.dropdown-toggle {
+  background-color: transparent !important;
+}
