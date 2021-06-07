@@ -1,8 +1,8 @@
 const { Film, PurchaseList, User, sequelize } = require("../../models")
 const { literal } = require("sequelize")
 const midTransClient = require("midtrans-client")
-
 const path = process.env.FILE_PATH
+
 exports.createUserPurchase = async (req, res) => {
   try {
     const filmid = req.params.filmid
@@ -79,16 +79,6 @@ exports.readUserPurchaseList = async (req, res) => {
         ],
       ],
     })
-
-    // const parseJSON = JSON.parse(JSON.stringify(transaction));
-
-    // data = parseJSON.map((item) => {
-    //   return {
-    //     ...item,
-
-    //     transferProof: path + item.transferProof,
-    //   };
-    // });
 
     res.status(200).send({
       status: "success",

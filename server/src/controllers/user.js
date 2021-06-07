@@ -1,4 +1,5 @@
 const { User, Film, PurchaseList, sequelize } = require("../../models")
+const isUrl = require("is-url")
 const { literal } = require("sequelize")
 const joi = require("joi")
 const jwt = require("jsonwebtoken")
@@ -14,6 +15,8 @@ exports.userAuth = async (req, res) => {
     const schema = joi.object({
       email: joi.string().email().min(6).required(),
       password: joi.string().required(),
+      fullName: joi.string(),
+      avatar: joi.string(),
     })
     const { error } = schema.validate(req.body)
     if (error) {
@@ -27,7 +30,7 @@ exports.userAuth = async (req, res) => {
         email,
       },
       attributes: {
-        exclude: ["phone", "createdAt", "updatedAt", "avatar"],
+        exclude: ["phone", "createdAt", "updatedAt"],
       },
     })
 
@@ -52,7 +55,7 @@ exports.userAuth = async (req, res) => {
         email,
       },
       attributes: {
-        exclude: ["phone", "password", "createdAt", "updatedAt", "avatar"],
+        exclude: ["phone", "password", "createdAt", "updatedAt"],
       },
     })
 
@@ -136,10 +139,10 @@ exports.checkAuth = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const email = req.body.email
     const schema = joi.object({
       email: joi.string().email().min(6).required(),
       password: joi.string().required(),
+      avatar: joi.string(),
       fullName: joi.string().min(3).required(),
     })
 
@@ -150,6 +153,8 @@ exports.createUser = async (req, res) => {
         message: error.details[0].message,
       })
     }
+
+    const email = req.body.email
     const isRegistered = await User.findOne({
       where: {
         email,
@@ -162,7 +167,11 @@ exports.createUser = async (req, res) => {
     if (!isRegistered) {
       const salt = bcrypt.genSaltSync(10)
       req.body.password = bcrypt.hashSync(req.body.password, salt)
-      await User.create({ ...req.body, avatar: "conten.png" })
+      if (!req.body.avatar) {
+        await User.create({ ...req.body, avatar: "conten.png" })
+      } else {
+        await User.create({ ...req.body })
+      }
 
       const user = await User.findOne({
         where: {
@@ -325,18 +334,17 @@ exports.getProfile = async (req, res) => {
     }
 
     const parseJSON = JSON.parse(JSON.stringify(profile))
-    // const test = JSON.parse(JSON.stringify(profile.myfundlist));
-    // datamyfunds = test.map((item) => {
-    //   return {
-    //     ...item,
-    //     thumbnail: path + item.thumbnail,
-    //   };
-    // });
     data = [parseJSON].map((item) => {
-      return {
-        ...item,
-        // myfundlist: datamyfunds,
-        avatar: path + item.avatar,
+      if (!isUrl(item.avatar)) {
+        return {
+          ...item,
+
+          avatar: path + item.avatar,
+        }
+      } else {
+        return {
+          ...item,
+        }
       }
     })
 

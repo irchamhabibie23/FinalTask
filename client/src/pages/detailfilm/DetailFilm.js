@@ -43,6 +43,13 @@ const DetailFilm = () => {
       type: "POPUPBUYBUKA",
     })
   }
+
+  const handlePopupPaymentBuka = () => {
+    dispatch({
+      type: "POPUPPAYMENTBUKA",
+    })
+  }
+
   const isAvail = state.myFilmLists.filter((asd) => asd.film === films.title)
   const status = isAvail.map((list) => list.status)
   return (
@@ -80,8 +87,13 @@ const DetailFilm = () => {
               <Row className='mb-3'>
                 <Col
                   onClick={() => {
-                    if (isAvail[0]?.status !== "Finished") {
-                      handlePopUpBuy()
+                    switch (isAvail[0]?.status) {
+                      case "Pending":
+                        return handlePopupPaymentBuka()
+                      case "Cancel":
+                        return handlePopUpBuy()
+                      default:
+                        return
                     }
                   }}>
                   <Player

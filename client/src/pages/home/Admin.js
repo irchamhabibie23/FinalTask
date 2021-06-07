@@ -57,7 +57,7 @@ function Admin() {
       const body = JSON.stringify({
         status: approve,
       })
-      console.log(body)
+
       await API.patch(`updateTransactionStatus/${item}`, body, config)
     } catch (error) {
       console.log(error)

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { Modal, Form, Alert } from "react-bootstrap"
+import { GoogleLogin } from "react-google-login"
 
 import { UserContext } from "../contexts/userContext"
 
@@ -59,6 +60,35 @@ const ModalLogin = () => {
     })
   }
 
+  const onSuccessGoogle = async (res) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+      const body = JSON.stringify({
+        email: res.profileObj.email,
+        password: res.profileObj.googleId,
+        fullName: res.profileObj.name,
+        avatar: res.profileObj.imageUrl,
+      })
+      await API.post("/register", body, config)
+      const response = await API.post("/login", body, config)
+      setAuthToken(response.data.data.user.token)
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: response.data.data.user,
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onFailureGoogle = (res) => {
+    console.log("Google Sign in was unsuccessful. Try Again Later")
+  }
+
   return (
     <Modal
       className='modal-border'
@@ -103,9 +133,15 @@ const ModalLogin = () => {
             placeholder='Password'
             required
           />
-          <button block type='submit' className='w-100 btn btn-modal'>
+          <button block type='submit' className='w-100 btn btn-modal mb-4'>
             Login
           </button>
+          <GoogleLogin
+            className='w-100 d-flex justify-content-center'
+            clientId='882775032737-7s3bj5kcr6qac4bq136ofhklv8mto9r3.apps.googleusercontent.com'
+            onSuccess={onSuccessGoogle}
+            onFailure={onFailureGoogle}
+          />
         </Form>
 
         <div

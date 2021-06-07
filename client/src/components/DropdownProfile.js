@@ -7,7 +7,7 @@ import { UserContext } from "../contexts/userContext"
 
 const DropdownProfile = () => {
   const [navbar, setNavbar] = useState([])
-  const [state] = useContext(UserContext)
+  const [state, dispatch] = useContext(UserContext)
 
   const loadRaiseFund = async () => {
     try {
@@ -27,8 +27,6 @@ const DropdownProfile = () => {
   //   return response.data.data.profile[0];
   // });
 
-  const [, dispatch] = useContext(UserContext)
-
   const handleLogOut = () => {
     dispatch({
       type: "LOGOUT",
@@ -39,7 +37,7 @@ const DropdownProfile = () => {
       menuAlign='right'
       title={
         <div className='navbar-img-container'>
-          <Image className='navbar-img' roundedCircle src={navbar?.avatar} />
+          <Image className='navbar-img' src={navbar?.avatar} />
         </div>
       }
       id='basic-nav-dropdown'>

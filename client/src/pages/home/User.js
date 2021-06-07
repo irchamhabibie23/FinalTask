@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
-import { Row, Col, Container, Carousel, Card } from "react-bootstrap"
+import { Row, Col, Container, Carousel, Form } from "react-bootstrap"
 import { API } from "../../config/api"
 import CardDonate from "../../components/CardDonate"
 import { convertToRupiah } from "../../utils"
@@ -8,6 +8,7 @@ import { UserContext } from "../../contexts/userContext"
 
 const User = () => {
   const [state, dispatch] = useContext(UserContext)
+  const [searchTerms, setSearchTerms] = useState("")
   const [films, setFilm] = useState([])
   // const [isLoading, setIsLoading] = useState(true);
   const router = useHistory()
@@ -36,8 +37,12 @@ const User = () => {
     router.push(`/detailfilm/${id}`)
   }
 
+  const onChange = (e) => {
+    setSearchTerms(e.target.value)
+  }
+
   return (
-    <Container className='mt-5'>
+    <Container className='mt-5' style={{ minHeight: "935px" }}>
       <Container>
         <Carousel fade>
           {films?.map((item) => {
@@ -103,20 +108,39 @@ const User = () => {
       </Container>
 
       <Row>
-        <Col style={{ color: "white", fontSize: "230%" }} className='mt-5'>
+        <Col style={{ color: "white", fontSize: "230%" }} className='mt-5 mb-2'>
           List Film
         </Col>
       </Row>
-      <Row
-        className='d-flex justify-content-center mb-4'
-        style={{ marginTop: "49px" }}>
-        {films?.map((item) => {
-          return (
-            <Col className='d-flex justify-content-center' key={item.id}>
-              <CardDonate filmList={item} />
-            </Col>
-          )
-        })}
+      <Row>
+        <Col>
+          <Form.Control
+            onChange={(e) => onChange(e)}
+            className='formmodal form-control-default'
+            placeholder='Search...'
+          />
+        </Col>
+      </Row>
+      <Row className='mb-4 mt-5'>
+        {films
+          ?.filter((item) => {
+            if (searchTerms === "") {
+              return item
+            } else if (
+              item.title.toLowerCase().includes(searchTerms.toLowerCase())
+            ) {
+              return item
+            } else {
+              return ""
+            }
+          })
+          .map((item) => {
+            return (
+              <Col xs lg={2} key={item.id}>
+                <CardDonate filmList={item} />
+              </Col>
+            )
+          })}
       </Row>
     </Container>
   )

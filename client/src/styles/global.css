@@ -2,11 +2,6 @@ body {
   background-color: black;
 }
 
-img,
-svg {
-  image-rendering: pixelated;
-}
-
 option {
   background-color: rgba(13, 13, 13, 1);
 }
@@ -146,11 +141,12 @@ option {
 
 .navbar-img {
   max-width: 60px;
+  margin-left: -2px;
 }
 
 .navbar-img-container {
-  width: 60px;
   height: 60px;
+
   overflow: hidden;
   border: 2px solid rgba(205, 46, 113, 1);
   border-radius: 50% !important;
@@ -314,7 +310,9 @@ hr.solid {
   width: 10.85rem;
   height: 15rem;
   background-color: black;
+  /* filter: saturate(0%); */
 }
+
 .card-film-image {
   cursor: pointer;
   max-height: 100%;

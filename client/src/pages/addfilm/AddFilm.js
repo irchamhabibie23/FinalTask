@@ -141,24 +141,25 @@ const AddFilm = () => {
             </Row>
           </Col>
         </Row>
-        <Row className='mb-4'>
-          {form.imageFile1 && (
-            <Col>
+        <Row>
+          <Col lg={6}>
+            {form.imageFile1 && (
               <Image
+                className='mb-4'
                 style={{ maxWidth: "300px", height: "230px" }}
                 src={thumbnail}
               />
-            </Col>
-          )}
-
-          {form.imageFile2 && (
-            <Col>
+            )}
+          </Col>
+          <Col lg={6}>
+            {form.imageFile2 && (
               <Image
+                className='mb-4'
                 style={{ maxWidth: "300px", height: "230px" }}
                 src={backdrop}
               />
-            </Col>
-          )}
+            )}
+          </Col>
         </Row>
 
         <Form.Group controlId='exampleForm.ControlSelect1'>
