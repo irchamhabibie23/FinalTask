@@ -4,11 +4,14 @@ import { useHistory } from "react-router-dom"
 import { API } from "../../config/api"
 
 const AddFilm = () => {
-  const [preview, setPreview] = useState()
+  const [thumbnail, setThumbnail] = useState()
+  const [backdrop, setBackdrop] = useState()
   const router = useHistory()
+
   const initialState = {
     title: "",
-    imageFile: "",
+    imageFile1: "",
+    imageFile2: "",
     CategoryId: null,
     price: null,
     filmUrl: "",
@@ -22,14 +25,26 @@ const AddFilm = () => {
   }
 
   useEffect(() => {
-    if (!form.imageFile) {
-      setPreview(undefined)
+    if (!form.imageFile1) {
+      setThumbnail(undefined)
       return
     }
-    const objectUrl = URL.createObjectURL(form.imageFile)
-    setPreview(objectUrl)
+
+    const objectUrl = URL.createObjectURL(form.imageFile1)
+    setThumbnail(objectUrl)
     return () => URL.revokeObjectURL(objectUrl)
-  }, [form.imageFile])
+  }, [form.imageFile1])
+
+  useEffect(() => {
+    if (!form.imageFile2) {
+      setBackdrop(undefined)
+      return
+    }
+
+    const objectUrl = URL.createObjectURL(form.imageFile2)
+    setBackdrop(objectUrl)
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [form.imageFile2])
 
   const onChange = (e) => {
     setFormData({
@@ -48,7 +63,8 @@ const AddFilm = () => {
       }
       const formData = new FormData()
       formData.set("title", form.title)
-      formData.append("imageFile", form.imageFile, form.imageFile.name)
+      formData.append("imageFile1", form.imageFile1, form.imageFile1.name)
+      formData.append("imageFile2", form.imageFile2, form.imageFile2.name)
       formData.set("CategoryId", form.CategoryId)
       formData.set("price", form.price)
       formData.set("filmUrl", form.filmUrl)
@@ -79,7 +95,7 @@ const AddFilm = () => {
           handleSubmit(e)
         }}>
         <Row>
-          <Col xs={9}>
+          <Col>
             <Form.Control
               required
               className='formmodal mb-4 form-control-default'
@@ -89,6 +105,9 @@ const AddFilm = () => {
               placeholder='Title'
             />
           </Col>
+        </Row>
+
+        <Row className='mb-4'>
           <Col>
             <Row>
               <Col xs={4.5}>
@@ -96,7 +115,7 @@ const AddFilm = () => {
                   <input
                     required
                     onChange={(e) => onChange(e)}
-                    name='imageFile'
+                    name='imageFile1'
                     type='file'
                   />
                   Attach Thumbnail
@@ -105,18 +124,42 @@ const AddFilm = () => {
               </Col>
             </Row>
           </Col>
+          <Col>
+            <Row>
+              <Col xs={4.5}>
+                <label className='form-control formmodal form-control-placeholder d-flex justify-content-between'>
+                  <input
+                    required
+                    onChange={(e) => onChange(e)}
+                    name='imageFile2'
+                    type='file'
+                  />
+                  Attach Backdrop
+                  <Image style={{ height: "24px" }} src='/Frame 1.svg' />
+                </label>
+              </Col>
+            </Row>
+          </Col>
         </Row>
-
-        {form.imageFile && (
-          <Row className='mb-4'>
-            <Col xs={4.5}>
+        <Row className='mb-4'>
+          {form.imageFile1 && (
+            <Col>
               <Image
                 style={{ maxWidth: "300px", height: "230px" }}
-                src={preview}
+                src={thumbnail}
               />
             </Col>
-          </Row>
-        )}
+          )}
+
+          {form.imageFile2 && (
+            <Col>
+              <Image
+                style={{ maxWidth: "300px", height: "230px" }}
+                src={backdrop}
+              />
+            </Col>
+          )}
+        </Row>
 
         <Form.Group controlId='exampleForm.ControlSelect1'>
           <Form.Control

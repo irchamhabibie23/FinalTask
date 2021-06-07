@@ -21,6 +21,44 @@ option {
   z-index: -1;
 }
 
+.carousel-caption {
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  width: 1081px;
+  left: 6.5%;
+  right: 0%;
+  padding: unset;
+  color: #fff;
+  text-align: center;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: 7%;
+}
+
+.carousel-caption-body {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.carousel-caption-body-description {
+  font-weight: lighter;
+  font-size: 85%;
+  text-align: start;
+  line-height: 179%;
+  color: #ffffff;
+}
+
+.carousel-caption-body-description-container {
+  width: 40rem;
+  height: 6.3rem;
+  overflow: hidden;
+}
+
 .white {
   color: white;
 }
@@ -244,20 +282,27 @@ hr.solid {
   color: rgba(255, 71, 0, 1);
 }
 
-.textimage {
-  font-weight: lighter;
-  font-size: 100%;
-  line-height: 179%;
-  color: #ffffff;
-}
-
 .textimagecontainer {
   width: 60%;
 }
 
+.filmtitle-container {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
+.filmcategory-container {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
 .filmtitle {
+  font-weight: bold;
+  font-size: 2rem;
   color: white !important;
-  height: 2.5rem;
+  height: 3rem;
   overflow: hidden;
 }
 

@@ -1,4 +1,4 @@
-"use strict";
+"use strict"
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("Films", {
@@ -29,6 +29,9 @@ module.exports = {
       thumbnail: {
         type: Sequelize.STRING,
       },
+      backdrop: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -37,9 +40,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    });
+    })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Films");
+    await queryInterface.dropTable("Films")
   },
-};
+}

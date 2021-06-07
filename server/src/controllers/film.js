@@ -5,11 +5,13 @@ const path = process.env.FILE_PATH
 exports.createFilm = async (req, res) => {
   try {
     const id = req.userId
-    const thumbnail = req.files.imageFile[0].filename
+    const thumbnail = req.files.imageFile1[0].filename
+    const backdrop = req.files.imageFile2[0].filename
 
     const film = await Film.create({
       ...req.body,
       thumbnail,
+      backdrop,
       UserId: id,
       attributes: {
         exclude: ["createdAt", "updatedAt"],
@@ -55,7 +57,21 @@ exports.readMyFilms = async (req, res) => {
 exports.readFilms = async (req, res) => {
   try {
     let films = await Film.findAll({
-      attributes: ["thumbnail", "id", "description", "title", "price"],
+      attributes: [
+        "thumbnail",
+        "id",
+        "description",
+        "title",
+        "price",
+        "backdrop",
+        [
+          literal(`(
+            SELECT Categories.name FROM Categories
+            WHERE Categories.id=Film.CategoryId
+          )`),
+          "category",
+        ],
+      ],
     })
 
     const parseJSON = JSON.parse(JSON.stringify(films))
@@ -64,6 +80,7 @@ exports.readFilms = async (req, res) => {
       return {
         ...item,
         thumbnail: path + item.thumbnail,
+        backdrop: path + item.backdrop,
       }
     })
 

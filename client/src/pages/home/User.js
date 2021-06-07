@@ -39,56 +39,63 @@ const User = () => {
   return (
     <Container className='mt-5'>
       <Container>
-        <Carousel className='d-flex'>
+        <Carousel fade>
           {films?.map((item) => {
             return (
-              <Carousel.Item key={item.id}>
-                <Row className='d-flex justify-content-center'>
-                  <Col className='d-flex justify-content-center' xs lg={4}>
-                    <Card.Img
-                      src={item.thumbnail}
-                      style={{ height: "23rem", width: "16.7rem" }}
-                    />
-                  </Col>
-                  <Col xs lg={5}>
-                    <div
-                      style={{
-                        height: "23rem",
-                        marginRight: "12%",
-                        overflow: "hidden",
-                      }}>
-                      <h3 className='filmtitle'>{item.title}</h3>
-                      <Row className='justify-content-between mb-1'>
-                        <Col>
-                          <h5 className='pinktext'>
-                            {convertToRupiah(item.price)}
-                          </h5>
-                        </Col>
-                        <Col xs lg={4}>
-                          {!state.isLogin ? (
-                            <button
-                              onClick={() => {
-                                handleLoginModalBuka()
-                              }}
-                              className='btn btn-regis'>
-                              Buy Now
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => {
-                                goToDetailPage(item.id)
-                              }}
-                              className='btn btn-regis'>
-                              Buy Now
-                            </button>
-                          )}
-                        </Col>
-                      </Row>
-
-                      <p className='textimage'>{item.description}</p>
-                    </div>
-                  </Col>
-                </Row>
+              <Carousel.Item interval={3000}>
+                <Container style={{ width: "1105px" }}>
+                  <img
+                    style={{ height: "437px", width: "1081px", opacity: "0.6" }}
+                    className='d-block'
+                    src={item.backdrop}
+                    alt='First slide'
+                  />
+                  <Carousel.Caption>
+                    <Row className='filmtitle-container'>
+                      <Col md='auto' className='filmtitle'>
+                        {item.title}
+                      </Col>
+                    </Row>
+                    <Row className='filmcategory-container mb-2'>
+                      <Col className='carousel-caption-body' md='auto'>
+                        {item.category}
+                      </Col>
+                    </Row>
+                    <Row className='filmcategory-container mb-3'>
+                      <Col className='pinktext carousel-caption-body' md='auto'>
+                        {convertToRupiah(item.price)}
+                      </Col>
+                    </Row>
+                    <Row className='filmcategory-container mb-3'>
+                      <Col
+                        className='carousel-caption-body-description carousel-caption-body-description-container'
+                        md='auto'>
+                        {item.description}
+                      </Col>
+                    </Row>
+                    <Row className='filmcategory-container'>
+                      <Col md='auto'>
+                        {!state.isLogin ? (
+                          <button
+                            onClick={() => {
+                              handleLoginModalBuka()
+                            }}
+                            className='btn btn-regis'>
+                            Buy Now
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              goToDetailPage(item.id)
+                            }}
+                            className='btn btn-regis'>
+                            Buy Now
+                          </button>
+                        )}
+                      </Col>
+                    </Row>
+                  </Carousel.Caption>
+                </Container>
               </Carousel.Item>
             )
           })}
