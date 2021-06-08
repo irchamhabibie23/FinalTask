@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react"
+import { useHistory } from "react-router-dom"
 import { Modal, Image, Row, Col } from "react-bootstrap"
 
 import { UserContext } from "../contexts/userContext"
@@ -8,9 +9,16 @@ const ModalPaymentGateway = (items) => {
   const [statusPayment, setStatusPayment] = useState("")
   const films = items.films
   const { id } = films
+  const router = useHistory()
   const handlePaymentGatewayTutup = () => {
     dispatch({
       type: "PAYMENTGATEWAYTUTUP",
+    })
+  }
+
+  const handlePopupPaymentBuka = () => {
+    dispatch({
+      type: "POPUPPAYMENTBUKA",
     })
   }
 
@@ -39,6 +47,9 @@ const ModalPaymentGateway = (items) => {
     if (statusPayment === "Closed") {
       deleteTransaction()
       setStatusPayment("")
+    } else if (statusPayment === "success") {
+      handlePopupPaymentBuka()
+      router.push("/")
     }
   }, [statusPayment])
 
@@ -95,7 +106,6 @@ const ModalPaymentGateway = (items) => {
       show={state.isVisiblePaymentGateway}
       onHide={handlePaymentGatewayTutup}>
       <Modal.Body>
-        {console.log(films)}
         <h4 className='white'>Choose Payment Gateway:</h4>
         <Row className='d-flex justify-content-around my-5'>
           <Col lg={3}>
@@ -115,6 +125,10 @@ const ModalPaymentGateway = (items) => {
               style={{ width: "100%", cursor: "pointer" }}
               src='/midtrans.png'
               alt='icon-midtrans'
+              onClick={() => {
+                onClickBuy()
+                handlePaymentGatewayTutup()
+              }}
             />
           </Col>
         </Row>
