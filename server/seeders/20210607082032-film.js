@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert("Films", [
       {
-        UserId: 1,
+        UserId: "ffa9e36c-4fdb-4e0f-a50a-e4fa5b6a276d",
         CategoryId: 1,
         title: "Dead Pool",
         price: 99000,
@@ -18,7 +18,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        UserId: 1,
+        UserId: "ffa9e36c-4fdb-4e0f-a50a-e4fa5b6a276d",
         CategoryId: 2,
         title: "Godzila vs Kong",
         price: 30000,
@@ -32,7 +32,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        UserId: 1,
+        UserId: "ffa9e36c-4fdb-4e0f-a50a-e4fa5b6a276d",
         CategoryId: 2,
         title: "Spiderman 3",
         price: 50000,
@@ -46,7 +46,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        UserId: 1,
+        UserId: "ffa9e36c-4fdb-4e0f-a50a-e4fa5b6a276d",
         CategoryId: 1,
         title: "Tom and Jerry The Movie (2021)",
         price: 30000,
@@ -60,7 +60,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        UserId: 1,
+        UserId: "ffa9e36c-4fdb-4e0f-a50a-e4fa5b6a276d",
         CategoryId: 3,
         title: "The Meg",
         price: 60000,
@@ -74,7 +74,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        UserId: 1,
+        UserId: "ffa9e36c-4fdb-4e0f-a50a-e4fa5b6a276d",
         CategoryId: 5,
         title: "Lord of the Rings : The Fellowship of the Ring",
         price: 25000,

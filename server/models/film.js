@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Film.init(
     {
-      UserId: DataTypes.INTEGER,
+      UserId: DataTypes.UUID,
       CategoryId: DataTypes.INTEGER,
       title: DataTypes.STRING,
       price: DataTypes.INTEGER,

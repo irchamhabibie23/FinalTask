@@ -81,13 +81,11 @@ const AddFilm = () => {
 
   return (
     <Container style={{ maxWidth: "70rem" }}>
-      {console.log(form.CategoryId)}
       <Row className='white'>
         <Col className='mb-5'>
           <h2>Add Film</h2>
         </Col>
       </Row>
-      {console.log(form)}
 
       <Form
         onSubmit={(e) => {
@@ -168,8 +166,9 @@ const AddFilm = () => {
             className={"formmodal mb-4 form-control-placeholder"}
             onChange={(e) => onChange(e)}
             name='CategoryId'
-            as='select'>
-            <option value='' disabled selected>
+            as='select'
+            defaultValue={""}>
+            <option value={""} disabled>
               Select Film Category
             </option>
             <option value={1}>Family</option>

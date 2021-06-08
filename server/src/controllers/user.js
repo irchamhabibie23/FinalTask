@@ -1,5 +1,6 @@
 const { User, Film, PurchaseList, sequelize } = require("../../models")
 const isUrl = require("is-url")
+const { v4: uuidv4 } = require("uuid")
 const { literal } = require("sequelize")
 const joi = require("joi")
 const jwt = require("jsonwebtoken")
@@ -30,7 +31,7 @@ exports.userAuth = async (req, res) => {
         email,
       },
       attributes: {
-        exclude: ["phone", "createdAt", "updatedAt"],
+        exclude: ["createdAt", "updatedAt"],
       },
     })
 
@@ -55,7 +56,7 @@ exports.userAuth = async (req, res) => {
         email,
       },
       attributes: {
-        exclude: ["phone", "password", "createdAt", "updatedAt"],
+        exclude: ["password", "createdAt", "updatedAt"],
       },
     })
 
@@ -86,6 +87,7 @@ exports.userAuth = async (req, res) => {
           fullName: user.fullName,
           email: user.email,
           token: token,
+          phone: user.phone,
         },
       },
     })
@@ -100,7 +102,7 @@ exports.userAuth = async (req, res) => {
 
 exports.checkAuth = async (req, res) => {
   try {
-    const id = req.userId
+    const id = JSON.parse(req.userId)
 
     const dataUser = await User.findOne({
       where: {
@@ -168,9 +170,9 @@ exports.createUser = async (req, res) => {
       const salt = bcrypt.genSaltSync(10)
       req.body.password = bcrypt.hashSync(req.body.password, salt)
       if (!req.body.avatar) {
-        await User.create({ ...req.body, avatar: "conten.png" })
+        await User.create({ ...req.body, id: uuidv4(), avatar: "conten.png" })
       } else {
-        await User.create({ ...req.body })
+        await User.create({ ...req.body, id: uuidv4() })
       }
 
       const user = await User.findOne({
@@ -283,9 +285,12 @@ exports.deleteUser = async (req, res) => {
 
 exports.getProfile = async (req, res) => {
   try {
-    const id = req.userId
+    const id = JSON.parse(req.userId)
+
     const profile = await User.findOne({
-      where: { id },
+      where: {
+        id,
+      },
       include: [
         {
           model: PurchaseList,
@@ -365,7 +370,7 @@ exports.getProfile = async (req, res) => {
 
 exports.getMyFilms = async (req, res) => {
   try {
-    const id = req.userId
+    const id = JSON.parse(req.userId)
     const profile = await User.findOne({
       where: { id },
       include: [
@@ -442,7 +447,7 @@ exports.getMyFilms = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const id = req.userId
+    const id = JSON.parse(req.userId)
     const profile = await User.findOne({
       where: { id },
       attributes: {

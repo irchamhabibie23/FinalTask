@@ -95,10 +95,10 @@ function Admin() {
         </thead>
 
         <tbody>
-          {profile?.map((item, index) => {
+          {profile?.map((item, index = 1) => {
             return (
               <tr className='py-4' key={index}>
-                <td className='px-3'>{item.id}</td>
+                <td className='px-3'>{index + 1}</td>
                 <td>{item.User.fullName}</td>
                 <td>
                   <href

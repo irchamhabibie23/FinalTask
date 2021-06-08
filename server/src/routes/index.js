@@ -23,6 +23,10 @@ const {
   createUserPurchase,
   readUserPurchaseList,
   updateUserPurchaseList,
+  notification,
+  createUserOrder,
+  createTransaction,
+  deleteUserTransaction,
 } = require("../controllers/purchaselist")
 
 router.post("/login", userAuth)
@@ -47,13 +51,11 @@ router.post(
   uploadFile("imageFile"),
   createUserPurchase
 )
-router.get(
-  "/transaction",
-  auth,
-
-  readUserPurchaseList
-)
-
+router.post("/order-product", createUserOrder)
+router.get("/transaction", auth, readUserPurchaseList)
+router.post("/transaction", auth, createTransaction)
+router.delete("/transaction/:FilmId", auth, deleteUserTransaction)
+router.post("/notification", notification)
 router.patch("/updateTransactionStatus/:id", auth, updateUserPurchaseList)
 
 module.exports = router

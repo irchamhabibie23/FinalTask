@@ -60,6 +60,7 @@ const NavbarComponent = () => {
       <ModalPopupPayment />
       <ModalPopupBuy />
       <ModalEditProfile />
+
       <ModalTransaction />
       <ModalDonate />
     </>

@@ -140,13 +140,16 @@ const ModalDonate = (data) => {
             {form.imageFile && <Image className='w-100 mt-4' src={preview} />}
           </Row>
           <Row>
-            <button
-              className='mt-5 btn btn-modal'
-              type='submit'
-              block
-              variant='primary'>
-              Pay
-            </button>
+            <Col className='d-flex' xs lg={12}>
+              <button
+                className='mt-5 btn btn-modal'
+                style={{ width: "100%" }}
+                type='submit'
+                block
+                variant='primary'>
+                Pay
+              </button>
+            </Col>
           </Row>
         </Form>
       </Modal.Body>

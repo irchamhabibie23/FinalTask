@@ -29,7 +29,6 @@ const MyFilm = () => {
         <LoadingPage />
       ) : (
         <Container className='navbar-container'>
-          {console.log(myfilms)}
           <Row
             style={{
               marginTop: "50px",

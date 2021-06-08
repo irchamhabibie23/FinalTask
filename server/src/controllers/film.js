@@ -4,7 +4,7 @@ const path = process.env.FILE_PATH
 
 exports.createFilm = async (req, res) => {
   try {
-    const id = req.userId
+    const id = JSON.parse(req.userId)
     const thumbnail = req.files.imageFile1[0].filename
     const backdrop = req.files.imageFile2[0].filename
 
@@ -34,7 +34,7 @@ exports.createFilm = async (req, res) => {
 
 exports.readMyFilms = async (req, res) => {
   try {
-    const id = req.userId
+    const id = JSON.parse(req.userId)
 
     const film = await Film.findAll({
       where: { id },

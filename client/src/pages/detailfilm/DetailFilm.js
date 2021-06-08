@@ -1,19 +1,40 @@
 import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Card, Row, Col, Container } from "react-bootstrap"
+import { Card, Row, Col, Container, Modal } from "react-bootstrap"
 import { Player, BigPlayButton } from "video-react"
 import "../../../node_modules/video-react/dist/video-react.css"
 import { API } from "../../config/api"
 import LoadingPage from "../loading/LoadingPage"
+import ModalPaymentGateway from "../../components/ModalPaymentGateway"
 import { convertToRupiah } from "../../utils"
 import { UserContext } from "../../contexts/userContext"
+
 const DetailFilm = () => {
   const [state, dispatch] = useContext(UserContext)
   const [films, setFilms] = useState([])
+  const [modal, setModal] = useState(false)
 
   const [isLoading, setIsLoading] = useState(true)
   const params = useParams()
   const { id } = params
+
+  const handlePopUpBuy = () => {
+    dispatch({
+      type: "POPUPBUYBUKA",
+    })
+  }
+
+  const handlePopupPaymentBuka = () => {
+    dispatch({
+      type: "POPUPPAYMENTBUKA",
+    })
+  }
+
+  const handlePaymentGatewayBuka = () => {
+    dispatch({
+      type: "PAYMENTGATEWAYBUKA",
+    })
+  }
 
   const loadFilm = async () => {
     try {
@@ -29,26 +50,17 @@ const DetailFilm = () => {
     setTimeout(() => {
       setIsLoading(false)
     }, 1000)
+    const midTransScript = "https://app.sandbox.midtrans.com/snap/snap.js"
+    const midTransClientKey = "SB-Mid-client-Cbqkqdo_7MGn2PNt"
+
+    const scriptTag = document.createElement("script")
+    scriptTag.src = midTransScript
+    scriptTag.setAttribute("data-client-key", midTransClientKey)
+    document.body.appendChild(scriptTag)
+    return () => {
+      document.body.removeChild(scriptTag)
+    }
   }, [])
-
-  const handleDonateModalBuka = () => {
-    dispatch({
-      type: "DONATEMODALBUKA",
-      payload: films,
-    })
-  }
-
-  const handlePopUpBuy = () => {
-    dispatch({
-      type: "POPUPBUYBUKA",
-    })
-  }
-
-  const handlePopupPaymentBuka = () => {
-    dispatch({
-      type: "POPUPPAYMENTBUKA",
-    })
-  }
 
   const isAvail = state.myFilmLists.filter((asd) => asd.film === films.title)
   const status = isAvail.map((list) => list.status)
@@ -58,6 +70,7 @@ const DetailFilm = () => {
         <LoadingPage />
       ) : (
         <Container className='navbar-container mt-5'>
+          <ModalPaymentGateway films={films} />
           <Row>
             <Col style={{ flex: "0 0 auto", width: "30%" }}>
               <Card.Img src={films?.thumbnail} alt='Card image' />
@@ -77,7 +90,9 @@ const DetailFilm = () => {
                     <button
                       className='btn'
                       onClick={() => {
-                        handleDonateModalBuka()
+                        // handleDonateModalBuka()
+                        // onClickBuy()
+                        handlePaymentGatewayBuka()
                       }}>
                       Buy Now
                     </button>
@@ -91,6 +106,7 @@ const DetailFilm = () => {
                       case "Pending":
                         return handlePopupPaymentBuka()
                       case "Cancel":
+                      case undefined:
                         return handlePopUpBuy()
                       default:
                         return

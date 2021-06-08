@@ -9,7 +9,7 @@ const DropdownProfile = () => {
   const [navbar, setNavbar] = useState([])
   const [state, dispatch] = useContext(UserContext)
 
-  const loadRaiseFund = async () => {
+  const loadProfile = async () => {
     try {
       const response = await API.get(`/profile`)
       setNavbar(response.data.data.profile[0])
@@ -19,7 +19,7 @@ const DropdownProfile = () => {
   }
   useEffect(() => {
     setTimeout(() => {
-      loadRaiseFund()
+      loadProfile()
     }, 500)
   }, [state.editIsPressed])
   // let { data: navbar } = useQuery("navbar", async () => {

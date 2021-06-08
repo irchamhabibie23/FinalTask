@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react"
-export const UserContext = createContext()
 
+export const UserContext = createContext()
 const initialState = {
   isLogin: false,
   user: "user",
@@ -9,6 +9,7 @@ const initialState = {
   isVisibleEditProfile: false,
   isVisiblePopupPayment: false,
   isVisiblePopupBuy: false,
+  isVisiblePaymentGateway: false,
   myFilmLists: null,
   editProfileModal: [],
   editIsPressed: 0,
@@ -73,6 +74,16 @@ const reducer = (state, action) => {
         ...state,
         isVisibleEditProfile: false,
         editProfileModal: [],
+      }
+    case "PAYMENTGATEWAYTUTUP":
+      return {
+        ...state,
+        isVisiblePaymentGateway: false,
+      }
+    case "PAYMENTGATEWAYBUKA":
+      return {
+        ...state,
+        isVisiblePaymentGateway: true,
       }
     case "LOGINMODALBUKA":
       return {
